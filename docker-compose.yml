@@ -157,6 +157,8 @@ services:
       - 'sentry-symbolicator:/data'
   web:
     << : *sentry_defaults
+    ports:
+      - '8001:9000/tcp'
   cron:
     << : *sentry_defaults
     command: run cron
@@ -193,6 +195,8 @@ services:
       - relay
   relay:
     << : *restart_policy
+    ports:
+      - '8002:3000/tcp'
     image: '$RELAY_IMAGE'
     volumes:
       - type: bind
